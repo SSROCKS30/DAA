@@ -10,14 +10,13 @@ def knapsack(weights, values, maxweight, num):
 
     return M
 
-def FindSolution(M, n, W):
-  i,w = n,W
+def FindSolution(M, num, maxweight):
   included = []
-  while i:
-    if weights[i]<=w and values[i]+M[i-1][w-weights[i]] > M[i-1][w]:
-      included.append((weights[i],values[i]))
-      w -= weights[i]
-    i -= 1
+  while num:
+    if weights[num] <= maxweight and values[num] + M[num-1][maxweight-weights[num]] > M[num-1][maxweight]:
+      included.append((weights[num],values[num]))
+      maxweight -= weights[num]
+    num -= 1
   return included
 
 num = int(input('Enter the number of items: '))
