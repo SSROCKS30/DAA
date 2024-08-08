@@ -14,7 +14,7 @@ def FindSolution(M, n, W):
     i,w = n,W
     included = []
     while i:
-        if weights[i]<=w and weights[i] + M[i-1][w-weights[i]] > M[i-1][w]:
+        if weights[i]<=w and M[i][maxweight] > M[i-1][w]:
             included.append(weights[i])
             w -= weights[i]
         i -= 1
@@ -27,5 +27,9 @@ for i in range(1, num + 1):
     weights[i] = int(input(f'Enter the weight of item {i}: '))
 maxweight = int(input('Enter the maximum weight: '))
 M = subset_sum(weights, maxweight, num)
-print('Maximum value: ', M[num][maxweight])
+max = M[num][maxweight]
+if max != maxweight:
+    print('No solution')
+    exit()
+print('Maximum value: ', max)
 print('Items included: ', FindSolution(M, num, maxweight))
